@@ -48,4 +48,19 @@ object Expressions extends App{
     if (z > 2) "hello" else "goodbye"
   } // code block is an expression
 
+  // exercises
+  // 1. difference between "hello world" and println("hello world")
+  //    "hello world" is a string literal where println("hello world") is a unit with side effect of printing to console
+
+  // 2. what's the value of:
+
+  val someValue = {
+    2 < 3
+  } // boolean evaluating to true
+
+  val somOtherValue = {
+    if(someValue) 239 else 986
+    42
+  } // value is 42, it is an int, because it is the last line in the code block
+
 }
