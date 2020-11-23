@@ -80,4 +80,13 @@ object Recursion extends App {
   println(isPrime(100))
 
   // 3. Fibonacci function
+  def fibonacci(n: Int): Int = {
+    def fiboTailRec(i: Int, last: Int, last2: Int): Int =
+      if(i >= n) last
+      else fiboTailRec(i + 1, last + last2, last)
+
+    if (n <= 2) 1
+    else fiboTailRec(2, 1, 1)
+  }
+  println(fibonacci(8))
 }
