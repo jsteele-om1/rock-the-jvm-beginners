@@ -26,7 +26,7 @@ abstract class MyList[+A] {
   def filter(predicate: MyPredicate[A]): MyList[A]
 
   // concatenation
-  def ++[B>: A](list: MyList[B]): MyList[A]
+  def ++[B >: A](list: MyList[B]): MyList[B]
 }
 
 object Empty extends MyList[Nothing] {
@@ -60,7 +60,7 @@ class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
     else t.filter(predicate)
 
   // if I concat [1,2] ++ [[3,4,5] = new Cons(1, [2] ++ [3, 4, 5]) - remember recursion
-  def ++[B>: A](list: MyList[B]): MyList[A] = new Cons(h, t ++ list)
+  def ++[B >: A](list: MyList[B]): MyList[B] = new Cons(h, t ++ list)
 
   def flatMap[B] (transformer: MyTransformer[A, MyList[B]]): MyList[B] =
     transformer.transform(h) ++ t.flatMap(transformer) // why isn't this working
