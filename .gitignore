@@ -4,4 +4,4 @@
 *.ipr
 *.iws
 .idea
-out/*
+out
