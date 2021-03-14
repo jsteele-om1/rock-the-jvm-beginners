@@ -76,13 +76,14 @@ case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
     transformer.transform(h) ++ t.flatMap(transformer)
 }
 
-trait MyPredicate[-T] {
-  def test(elem: T): Boolean
-}
-
-trait MyTransformer[-A, B] {
-  def transform(elem: A): B
-}
+// removing for now
+//trait MyPredicate[-T] { // T-> Boolean
+//  def test(elem: T): Boolean
+//}
+//
+//trait MyTransformer[-A, B] { // A-> B
+//  def transform(elem: A): B
+//}
 
 object ListTest extends App {
   val list1 = new Cons(1, new Cons(2, new Cons(3, Empty)))
