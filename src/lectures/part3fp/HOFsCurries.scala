@@ -37,4 +37,32 @@ object HOFsCurries extends App {
 
   println(standardFormat(Math.PI))
   println(preciseFormat(Math.PI))
+
+  /*
+  * Exercises
+  * 1. expand mylist
+  *   - add foreach method - A => Unit
+  *   - sort function - ((A, a) => Int) => MyList
+  *   - zipWith function - (list, (A, A) => B) => MyList[B]
+  *   - fold
+  * 2. toCurry(f: (Int, Int) => Int) => (Int => Int => Int)
+  *    fromCurry(f: (Int => Int => Int) => (Int, Int) => Int
+  * 3. compose(f, g) => x => f(g(x))
+  *    andThen(g, f) => x => g(f(x))
+  * */
+
+  def toCurry(f: (Int, Int) => Int): (Int => Int => Int) =
+    x => y => f(x, y)
+
+  def fromCurry(f: (Int => Int => Int)): (Int, Int) => Int =
+    (x, y) => f(x)(y)
+
+  def compose[A, B, T](f: A => B, g: T => A): T => B =
+    x => f(g(x))
+
+  def andThen[A, B, C](f: A => B, g: B => C): A => C =
+    x => g(f(x))
+
+//  def superAdder2 = ()
+
 }
