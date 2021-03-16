@@ -115,6 +115,18 @@ object TuplesAndMaps extends App {
   println(nPeopleWithNoFriends(testNet))
 
   def socialConnection(network: Map[String, Set[String]], a: String, b: String): Boolean = {
-    def bfs(target: S)
+    @tailrec
+    def bfs(target: String, consideredPeople: Set[String], discoveredPeople: Set[String]): Boolean = {
+      if (discoveredPeople.isEmpty) false
+      else {
+        val person = discoveredPeople.head
+        if (person == target) true
+        else if (consideredPeople.contains(person)) bfs(target, consideredPeople, discoveredPeople.tail)
+        else bfs(target, consideredPeople + person, discoveredPeople.tail ++ network(person))
+      }
+    }
+    bfs(b, Set(), network(a) + a)
   }
+
+  println(socialConnection(testNet, "Mary", "Jim"))
 }
